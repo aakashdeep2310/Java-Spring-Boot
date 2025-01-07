@@ -32,9 +32,26 @@ public class QuestionService {
             // System.out.println(q.getAnswer());
         }
 
-        for(String s : selection){
+        System.out.println("Your submitted answers are : ");
+        for(String s : selection){ 
             System.out.print(s + " ");
         }
+    }
+
+    public void printScore(){
+        int score = 0;
+        for(int i = 0; i<questions.length; i++){
+            Question que = questions[i];
+            String actualAnswer = que.getAnswer();
+
+            String userAnswer = selection[i];
+
+            if(actualAnswer.equals(userAnswer)){
+                score++;
+            }
+        }
+
+        System.out.println("You scored the : " + score + " points");
     }
 
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class Demo {
 
@@ -16,12 +17,18 @@ public class Demo {
 
         // System.out.println(nums);
         
-        for(int n : nums){
-            System.out.print(n+ " ");
-        }
+        // for(int n : nums){
+        //     System.out.print(n+ " ");
+        // }
         // for(Object n : nums){
         //     int num = (int)n;
         //     System.out.print(num *2+ " ");
         // }
+
+
+        Iterator<Integer> values = nums.iterator();
+        while(values.hasNext()){
+            System.out.print(values.next() + " ");
+        }
     }
 }

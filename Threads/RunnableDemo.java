@@ -1,7 +1,8 @@
 
-class A extends Thread{
+
+class A implements Runnable{
     public void run(){
-        for(int i = 0; i<100; i++){
+        for(int i = 0; i<5; i++){
             System.out.println("hello Peter");
             try{
                 Thread.sleep(100);
@@ -12,12 +13,12 @@ class A extends Thread{
         }
     }
 }
-class B extends Thread{
+class B implements Runnable{
     public void run(){
-        for(int i = 0; i<100; i++){
+        for(int i = 0; i<5; i++){
             System.out.println("hello Tony");
             try{
-                Thread.sleep(10);
+                Thread.sleep(100);
             } catch(InterruptedException e){
                 e.printStackTrace();
             }
@@ -25,22 +26,16 @@ class B extends Thread{
     }
 }
 
-
-public class Demo {
+public class RunnableDemo {
 
     public static void main(String[] args) {
-        A obj = new A();
-        B obj2 = new B();
+        Runnable obj1 = new A();
+        Runnable obj2 = new B();
+        
+        Thread t1 = new Thread(obj1);
+        Thread t2 = new Thread(obj2);
 
-        obj.setPriority(Thread.MAX_PRIORITY);
-        obj2.setPriority(Thread.MIN_PRIORITY);
-
-        obj.start();
-        try{
-            Thread.sleep(103);
-        }catch(InterruptedException e){
-            e.printStackTrace();
-        }
-        obj2.start();
+        t1.start();
+        t2.start();
     }
 }

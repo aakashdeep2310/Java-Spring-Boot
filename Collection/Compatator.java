@@ -1,8 +1,24 @@
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+class Student {
+
+    int age;
+    String name;
+
+    Student(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+
+    public String toString() {
+        return "Student{" + "age=" + age + ", name='" + name + '\'' + '}';
+    }
+}
 
 public class Compatator {
 
@@ -10,15 +26,14 @@ public class Compatator {
 
         // Comparator<Integer> com = new Comparator<Integer>()
         // {
-        //     public int compare(Integer i, Integer j){
-        //         if(i%10 > j %10){
-        //             return 1;
-        //         }else{
-        //             return -1;
-        //         }
-        //     }
+        // public int compare(Integer i, Integer j){
+        // if(i%10 > j %10){
+        // return 1;
+        // }else{
+        // return -1;
+        // }
+        // }
         // };
-
 
         // List<Integer> nums = new ArrayList<Integer>();
         // nums.add(10);
@@ -31,21 +46,45 @@ public class Compatator {
 
         // System.out.println(nums);
 
-        //Task
+        // Task -1
 
-        List<String> names = new ArrayList<String>();
-        names.add("Rahul");
-        names.add("Aman");
-        names.add("Sam");
-        names.add("Abhi");
+        // List<String> names = new ArrayList<String>();
+        // names.add("Rahul");
+        // names.add("Aman");
+        // names.add("Sam");
+        // names.add("Abhi");
 
-        Comparator<String> comp = new Comparator<String>(){
-            public int compare(String s1, String s2){
-                return s1.length() - s2.length();
+        // Comparator<String> comp = new Comparator<String>(){
+        // public int compare(String s1, String s2){
+        // return s1.length() - s2.length();
+        // }
+        // };
+
+        // Collections.sort(names, comp);
+        // System.out.println(names);
+
+        Comparator<Student> comp = new Comparator<Student>() {
+            public int compare(Student i, Student j) {
+                if (i.age> j.age) {
+                    return 1;
+                } else {
+                    return -1;
+                }
             }
+
         };
 
-        Collections.sort(names, comp);
-        System.out.println(names);
+        List<Student> studs = new ArrayList<>();
+        studs.add(new Student(21, "Rahul"));
+        studs.add(new Student(74, "Aman"));
+        studs.add(new Student(56, "Abhi"));
+        studs.add(new Student(45, "Rajat"));
+
+        Collections.sort(studs, comp);
+
+        for (Student s : studs) {
+            System.out.println(s);
+        }
+
     }
 }

@@ -43,11 +43,19 @@ public class Demo {
 
         // Now Learn Stream API
 
-        Stream<Integer> s = nums.stream();
-        Stream <Integer> s2 = s.filter(n -> n%2 == 0);
-        Stream<Integer> s3 = s2.map(n-> n*2);
+        // Stream<Integer> s = nums.stream();
+        // Stream <Integer> s2 = s.filter(n -> n%2 == 0);
+        // Stream<Integer> s3 = s2.map(n-> n*2);
+        // int result = s3.reduce(0, (c,e) -> c+e);
 
-        s3.forEach(n -> System.out.println(n));
+        // Now make it shorter to wirte in one line 
+        int result = nums.stream()
+                    .filter(n -> n%2 == 0)
+                    .map(n-> n*2)
+                    .reduce(0, (c,e) -> c+e);
+
+        System.out.println(result);
+        // s3.forEach(n -> System.out.println(n));
          
     }
 

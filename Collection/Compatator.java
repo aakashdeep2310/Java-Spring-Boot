@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-class Student {
+class Student implements Comparable<Student> {
 
     int age;
     String name;
@@ -17,6 +17,10 @@ class Student {
 
     public String toString() {
         return "Student{" + "age=" + age + ", name='" + name + '\'' + '}';
+    }
+
+    public int compareTo(Student that) {
+        return this.age - that.age;
     }
 }
 
@@ -63,16 +67,16 @@ public class Compatator {
         // Collections.sort(names, comp);
         // System.out.println(names);
 
-        Comparator<Student> comp = new Comparator<Student>() {
-            public int compare(Student i, Student j) {
-                if (i.age> j.age) {
-                    return 1;
-                } else {
-                    return -1;
-                }
-            }
+        Comparator<Student> comp = (i, j) ->{
+                // if (i.age> j.age) {
+                //     return 1;
+                // } else {
+                //     return -1;
+                // }
 
-        };
+                // return i.age - j.age;
+                return (i.age > j.age) ? 1 : -1;
+            };
 
         List<Student> studs = new ArrayList<>();
         studs.add(new Student(21, "Rahul"));
@@ -80,7 +84,8 @@ public class Compatator {
         studs.add(new Student(56, "Abhi"));
         studs.add(new Student(45, "Rajat"));
 
-        Collections.sort(studs, comp);
+        // Collections.sort(studs, comp);
+        Collections.sort(studs);  // this works when we implement Comparable interface in Student class
 
         for (Student s : studs) {
             System.out.println(s);

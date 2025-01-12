@@ -15,8 +15,49 @@ public class parallelStream {
             nums.add(ran.nextInt(100));
         }
 
-        System.out.println(nums);
+        // int sum1 = nums.stream()
+        //         .map(i->i*2)
+        //         .reduce(0, (c,e) -> c+e);
+          
+        // System.out.println(sum1);
+
+        long startSeq = System.currentTimeMillis();
+        int sum2  = nums.stream()
+                .map(i ->{
+
+                    try{
+                        Thread.sleep(1);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                    return i*2;
+                })
+                .mapToInt(i -> i)
+                .sum();
+
+        long endSeq = System.currentTimeMillis();
+        long startPara = System.currentTimeMillis();
         
+        int sum3  = nums.parallelStream()
+        .map(i -> {
+
+            try{
+                Thread.sleep(1);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return i*2;
+        })
+        .mapToInt(i -> i)
+        .sum();
+        
+        long endPara = System.currentTimeMillis();
+
+        // System.out.println(sum1 + " "  + sum2 + " "+ sum3);
+        System.out.println(sum2 + " "+ sum3);
+        System.out.println("Seq " + (endSeq - startSeq));
+        System.out.println("Para " + (endPara - startPara));
     }
+
     
 }
